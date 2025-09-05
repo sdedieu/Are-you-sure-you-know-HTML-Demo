@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Advanced HTML5 Features Demo (No JS)</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        margin: 2rem;
+        line-height: 1.6;
+      }
+      section {
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 1rem;
+        margin-bottom: 2rem;
+      }
+      h2 {
+        margin-top: 0;
+      }
+      video {
+        max-width: 100%;
+        border-radius: 8px;
+      }
+      ::backdrop {
+        background: rgba(0, 0, 0, 0.4);
+      }
+      details summary {
+        cursor: pointer;
+      }
+      .file-tree {
+        margin-left: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Advanced & Lesser-Known HTML5 Features (Pure HTML)</h1>
+
+    <section>
+      <h2>1. Object</h2>
+      <object
+        data="https://stackoverflow.com/does-not-exist.png"
+        type="image/png"
+        alt="You won't see this alt text will fallback to the img inside"
+      >
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Panoramic_view_near_the_Col_de_l%27Iseran_%2821291685102%29.jpg/2560px-Panoramic_view_near_the_Col_de_l%27Iseran_%2821291685102%29.jpg"
+          alt="Stack Overflow logo and icons and such"
+          width="100%"
+        />
+      </object>
+    </section>
+
+    <section>
+      <h2>2. &lt;track&gt; with Timed Cues</h2>
+      <video controls crossorigin>
+        <source
+          src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+          type="video/mp4"
+        />
+        <track
+          kind="captions"
+          srclang="en"
+          label="English — Visual descriptions"
+          src="data:text/vtt;charset=utf-8,WEBVTT%0A%0A00:00:00.000%20-->%2000:00:05.000%0AA%20single%20flower%20slowly%20opens%20in%20bright%20sunlight.%0A%0A00:00:05.000%20-->%2000:00:10.000%0ACamera%20pans%20left%20to%20reveal%20a%20field%20of%20flowers%2C%20gentle%20breeze%20rustles%20petals.%0A%0A00:00:10.000%20-->%2000:00:15.000%0ASun%20flare%20appears%20at%20frame%20right%2C%20warm%20golden%20light%20fills%20the%20scene."
+          default
+        />
+        <!-- 'default' marks these captions on by default if the browser honors it -->
+      </video>
+      <p>Subtitles appear thanks to &lt;track&gt;.</p>
+    </section>
+
+    <section>
+      <h2>3. &lt;meter&gt; and &lt;progress&gt;</h2>
+      <label
+        >Battery level:
+        <br />
+        <meter
+          id="fuel"
+          min="0"
+          max="100"
+          low="33"
+          high="66"
+          optimum="80"
+          value="20"
+        ></meter>
+      </label>
+      <br />
+      <meter
+        id="fuel"
+        min="0"
+        max="100"
+        low="33"
+        high="66"
+        optimum="80"
+        value="50"
+      ></meter>
+      <br />
+      <meter
+        id="fuel"
+        min="0"
+        max="100"
+        low="33"
+        high="66"
+        optimum="80"
+        value="90"
+      ></meter>
+      <br />
+      <label>Download: <progress max="100" value="70"></progress></label>
+    </section>
+
+    <section>
+      <h2>4. &lt;datalist&gt; Autocomplete</h2>
+      <input list="browsers" placeholder="Type a browser name" />
+      <datalist id="browsers">
+        <option value="Firefox"></option>
+        <option value="Chrome"></option>
+        <option value="Safari"></option>
+        <option value="Edge"></option>
+        <option value="Opera"></option>
+      </datalist>
+    </section>
+
+    <section>
+      <h2>5. &lt;template&gt; (Static)</h2>
+      <p>
+        Templates define reusable chunks of HTML that stay inert until activated
+        by script. Without JS, you can still see the definition:
+      </p>
+      <template>
+        <li>📌 Template-generated item</li>
+      </template>
+    </section>
+
+    <section>
+      <h2>6. &lt;output&gt; Calculations</h2>
+      <form oninput="result.value = a.value * b.value">
+        <input id="a" type="number" value="5" /> ×
+        <input id="b" type="number" value="3" /> =
+        <output name="result"></output>
+      </form>
+      <p>This works natively: type numbers, result updates instantly.</p>
+    </section>
+
+    <section>
+      <h2>7. &lt;dialog&gt; (Static)</h2>
+      <dialog>
+        <form method="dialog">
+          <p>Hi, I'm a native HTML5 dialog!</p>
+          <button>Close</button>
+        </form>
+      </dialog>
+      <p>
+        Dialog is shown with
+        <button>Show the dialog</button> attribute. Without JS you cannot
+        programmatically open/close, but you can style it.
+      </p>
+    </section>
+
+    <section>
+      <h2>8. &lt;details&gt; and &lt;summary&gt;</h2>
+      <details>
+        <summary>Click to expand file tree</summary>
+        <div class="file-tree">
+          <details>
+            <summary>📁 Documents</summary>
+            <div class="file-tree">📄 Resume.docx</div>
+          </details>
+          <details>
+            <summary>📁 Pictures</summary>
+            <div class="file-tree">🖼️ photo.png</div>
+          </details>
+        </div>
+      </details>
+    </section>
+
+    <section>
+      <h2>9. &lt;mark&gt; Highlighting</h2>
+      <p>This demo <mark>highlights</mark> important terms in a text block.</p>
+    </section>
+
+    <section>
+      <h2>10. &lt;data&gt; (Static)</h2>
+      <p>Tasks with hidden machine-readable values:</p>
+      <ul>
+        <li><data value="task1">Task 1</data></li>
+        <li><data value="task2">Task 2</data></li>
+      </ul>
+      <p>
+        (With JS, you could drag/drop and use these values, but here they remain
+        semantic only.)
+      </p>
+    </section>
+
+    <section>
+      <h2>11. &lt;ruby&gt; Phonetic Guides</h2>
+      <p>
+        <ruby> 漢 <rt>Kan</rt> 字 <rt>Ji</rt> </ruby>
+        (Kanji characters with pronunciation).
+      </p>
+    </section>
+    <script>
+      const dialog = document.querySelector("dialog");
+      const showButton = document.querySelector("dialog + p button");
+      const closeButton = document.querySelector("dialog button");
+
+      // "Show the dialog" button opens the dialog modally
+      showButton.addEventListener("click", () => {
+        dialog.showModal();
+      });
+    </script>
+  </body>
+</html>
